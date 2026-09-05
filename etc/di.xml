@@ -1,5 +1,7 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Magento\Email\Model\Template\Filter"
+                type="Graycore\StyleSmugglerPatch\Model\Template\Filter"/>
     <type name="Magento\Backend\Model\Widget\Grid\Row\UrlGeneratorFactory">
         <plugin name="graycore_stylesmugglerpatch_validate_url_generator_class"
                 type="Graycore\StyleSmugglerPatch\Plugin\Backend\Model\Widget\Grid\Row\ValidateUrlGeneratorClass"
