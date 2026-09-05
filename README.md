@@ -11,22 +11,19 @@
 </div>
 
 > [!CAUTION]
-> **This module deliberately breaks checkout for Payflow Pro and Payments Pro over GraphQL.**
+> **This is an unofficial stop-gap, not an official Adobe patch, and it carries no warranty.**
+> See the [LICENSE](LICENSE).
 >
-> It does not sanitize, filter, or validate anything. It replaces the `handlePayflowProResponse`
-> resolver with one that throws immediately. Every call to that mutation fails, for attackers and
-> for real shoppers alike. If your storefront takes payments through Payflow Pro or Payments Pro on
-> GraphQL, installing this module will stop those orders from completing. That is the intended
-> behavior — it is a deliberate trade of revenue for exposure. Make that trade knowingly.
+> It hardens three points on the StyleSmuggler chain: the email template `{{block}}` directive
+> refuses backend blocks, the grid row URL generator factory validates the class before building
+> it, and Web API fatal error reports have their PHP open tags broken. That is hardening, not a
+> fix — the vulnerability itself is unpatched, and other paths through it remain open.
 >
-> **This is not a complete fix.**
+> A vulnerable store may already be compromised. Mitigating an entry point does **not** remove a
+> backdoor that is already there. Audit your store.
 >
-> * It is **not** an official Adobe patch and carries no warranty. See the [LICENSE](LICENSE).
-> * It closes the `/graphql` mutation **only**.
-> * The mitigation will change as better fixes are found. Read the [CHANGELOG](CHANGELOG.md) before
->   every upgrade.
->
-> **Test on a staging environment first. Have a rollback plan.**
+> The mitigation will change as better fixes are found. Read the [CHANGELOG](CHANGELOG.md) before
+> every upgrade. **Test on a staging environment first. Have a rollback plan.**
 
 ## Magento Version Support
 ![Magento v2.4 Supported](https://img.shields.io/badge/Magento-2.4-brightgreen.svg?labelColor=2f2b2f&logo=magento&logoColor=f26724&color=464246&longCache=true&style=flat)

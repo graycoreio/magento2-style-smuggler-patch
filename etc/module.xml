@@ -4,7 +4,6 @@
     <module name="Graycore_StyleSmugglerPatch" setup_version="1.0.0">
         <sequence>
             <module name="Magento_Store"/>
-            <module name="Magento_PaypalGraphQl"/>
             <module name="Magento_Backend"/>
             <module name="Magento_Email"/>
         </sequence>
