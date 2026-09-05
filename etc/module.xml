@@ -5,6 +5,7 @@
         <sequence>
             <module name="Magento_Store"/>
             <module name="Magento_PaypalGraphQl"/>
+            <module name="Magento_Backend"/>
         </sequence>
     </module>
 </config>

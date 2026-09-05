@@ -38,6 +38,7 @@
     },
     "require": {
         "magento/framework": "^102.0 || ^103.0",
+        "magento/module-backend": "^101.0 || ^102.0",
         "magento/module-paypal-graph-ql": "^100.3 || ^100.4"
     },
     "require-dev": {
