@@ -4,6 +4,13 @@
                 type="Graycore\StyleSmugglerPatch\Model\Template\Filter"/>
     <preference for="Magento\Framework\Webapi\ErrorProcessor"
                 type="Graycore\StyleSmugglerPatch\Model\Webapi\ErrorProcessor"/>
+    <preference for="Magento\Framework\View\Result\Page"
+                type="Graycore\StyleSmugglerPatch\Model\View\Result\Page"/>
+    <type name="Magento\Framework\View\TemplateEngine\Php">
+        <plugin name="graycore_stylesmugglerpatch_validate_template_path"
+                type="Graycore\StyleSmugglerPatch\Plugin\Framework\View\TemplateEngine\ValidateTemplatePath"
+                sortOrder="1"/>
+    </type>
     <type name="Magento\Backend\Model\Widget\Grid\Row\UrlGeneratorFactory">
         <plugin name="graycore_stylesmugglerpatch_validate_url_generator_class"
                 type="Graycore\StyleSmugglerPatch\Plugin\Backend\Model\Widget\Grid\Row\ValidateUrlGeneratorClass"
