@@ -34,6 +34,10 @@ class FilterTest extends TestCase
             'core adminhtml block' => 'Magento\Sales\Block\Adminhtml\Order\Grid',
             'adminhtml block, mixed case' => 'Vendor\Module\block\adminhtml\Something',
             'email template preview block' => 'Magento\Email\Block\Adminhtml\Template\Preview',
+            'doubled separators' => 'Magento\\\\Backend\\\\Block\\\\Widget\\\\Grid',
+            'doubled separators, adminhtml' => 'Vendor\\\\Module\\\\Block\\\\\\\\Adminhtml\\\\Something',
+            'mixed doubled and forward separators' => 'Magento//Backend\\\\Block/Widget\\Grid',
+            'many leading separators' => '\\\\\\\\Magento\\Backend\\Block\\Widget\\Grid',
         ];
 
         foreach ($restricted as $description => $class) {

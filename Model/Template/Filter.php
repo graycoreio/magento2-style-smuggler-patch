@@ -47,7 +47,13 @@ class Filter extends EmailTemplateFilter
      */
     private function isRestrictedBlockClass(string $class): bool
     {
-        $normalized = ltrim(str_replace('/', '\\', trim($class)), '\\');
+        // Canonicalize separators so alternate spellings cannot evade the checks: unify / to \,
+        // collapse repeated separators, and drop leading separators.
+        $normalized = str_replace('/', '\\', trim($class));
+        while (strpos($normalized, '\\\\') !== false) {
+            $normalized = str_replace('\\\\', '\\', $normalized);
+        }
+        $normalized = ltrim($normalized, '\\');
         if ($normalized === '') {
             return false;
         }
