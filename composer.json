@@ -1,0 +1,63 @@
+{
+    "name": "graycore/style-smuggler-patch",
+    "description": "A Magento 2 module that mitigates the StyleSmuggler remote code execution vulnerability",
+    "type": "magento2-module",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Damien Retzinger",
+            "email": "damienwebdev@gmail.com"
+        }
+    ],
+    "scripts": {
+        "test": "phpunit --bootstrap vendor/autoload.php test",
+        "unit-test": "vendor/bin/phpunit ./Test/Unit",
+        "lint": "phpcs",
+        "post-install-cmd": [
+            "([ $COMPOSER_DEV_MODE -eq 0 ] || vendor/bin/phpcs --config-set installed_paths ../../magento/magento-coding-standard/,../../magento/php-compatibility-fork)"
+        ],
+        "post-update-cmd": [
+            "([ $COMPOSER_DEV_MODE -eq 0 ] || vendor/bin/phpcs --config-set installed_paths ../../magento/magento-coding-standard/,../../magento/php-compatibility-fork)"
+        ]
+    },
+    "archive": {
+        "exclude": [
+            "/docs",
+            "/Test",
+            "README.md"
+        ]
+    },
+    "minimum-stability": "stable",
+    "autoload": {
+        "psr-4": {
+            "Graycore\\StyleSmugglerPatch\\": ""
+        },
+        "files": [
+            "registration.php"
+        ]
+    },
+    "require": {
+        "magento/framework": "^102.0 || ^103.0",
+        "magento/module-paypal-graph-ql": "^100.3 || ^100.4"
+    },
+    "require-dev": {
+        "magento/magento-coding-standard": "^40",
+        "magento/php-compatibility-fork": "^0.1.0",
+        "phpunit/phpunit": "^12.0",
+        "squizlabs/php_codesniffer": "^3.0.0"
+    },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://mirror.mage-os.org/"
+        }
+    ],
+    "config": {
+        "preferred-install": "dist",
+        "sort-packages": true,
+        "allow-plugins": {
+            "magento/composer-dependency-version-audit-plugin": false,
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        }
+    }
+}
