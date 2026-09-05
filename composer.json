@@ -1,5 +1,5 @@
 {
-    "name": "graycore/style-smuggler-patch",
+    "name": "graycore/magento2-style-smuggler-patch",
     "description": "A Magento 2 module that mitigates the StyleSmuggler remote code execution vulnerability",
     "type": "magento2-module",
     "license": "MIT",
