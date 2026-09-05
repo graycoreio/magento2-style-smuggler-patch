@@ -19,9 +19,9 @@ class PayflowProResponseTest extends TestCase
         $this->expectException(GraphQlInputException::class);
 
         $resolver->resolve(
-            $this->createMock(Field::class),
+            $this->createStub(Field::class),
             null,
-            $this->createMock(ResolveInfo::class),
+            $this->createStub(ResolveInfo::class),
             null,
             ['input' => ['cart_id' => 'abc123', 'paypal_payload' => 'RESULT=0']]
         );
@@ -34,9 +34,9 @@ class PayflowProResponseTest extends TestCase
         $this->expectException(GraphQlInputException::class);
 
         $resolver->resolve(
-            $this->createMock(Field::class),
+            $this->createStub(Field::class),
             null,
-            $this->createMock(ResolveInfo::class)
+            $this->createStub(ResolveInfo::class)
         );
     }
 }
