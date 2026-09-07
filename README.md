@@ -15,9 +15,10 @@
 > See the [LICENSE](LICENSE).
 >
 > It hardens three points on the StyleSmuggler chain: the email template `{{block}}` directive
-> refuses backend blocks, the grid row URL generator factory validates the class before building
-> it, and Web API fatal error reports have their PHP open tags broken. That is hardening, not a
-> fix — the vulnerability itself is unpatched, and other paths through it remain open.
+> instantiates only allowlisted block classes and nothing is allowlisted by default, the grid row
+> URL generator factory validates the class before building it, and Web API fatal error reports
+> have their PHP open tags broken. That is hardening, not a fix — the vulnerability itself is
+> unpatched, and other paths through it remain open.
 >
 > A vulnerable store may already be compromised. Mitigating an entry point does **not** remove a
 > backdoor that is already there. Audit your store.
@@ -45,6 +46,42 @@ composer require graycore/magento2-style-smuggler-patch
 ```bash
 ./bin/magento module:enable Graycore_StyleSmugglerPatch
 ```
+
+3. Check your logs for refused blocks
+
+The `{{block}}` email template directive can no longer instantiate any block class. If your
+transactional emails need one, the refusal is logged as `critical` with the class name, so run a
+test send and read `var/log/system.log` before going live:
+
+```
+Refused a block class in an email template {{block}} directive because it is not on the allowlist. {"class":"Vendor\\Module\\Block\\OrderSummary"}
+```
+
+## Allowlisting a Block Class
+Add the classes your email templates need from your own module's `di.xml`:
+
+```xml
+<type name="Graycore\StyleSmugglerPatch\Model\Template\BlockDirectiveAllowList">
+    <arguments>
+        <argument name="allowedClasses" xsi:type="array">
+            <item name="order_summary" xsi:type="string">Vendor\Module\Block\OrderSummary</item>
+        </argument>
+    </arguments>
+</type>
+```
+
+Then `bin/magento cache:clean config` (or `setup:di:compile` in production mode).
+
+A few things to know:
+
+* Matching is on the exact class name, so a subclass of an allowlisted class is not itself
+  allowlisted. Separator spelling, leading separators and case do not matter.
+* Backend blocks — anything under `Magento\Backend\Block\` or a `\Block\Adminhtml\`
+  namespace — are refused even if you allowlist them.
+* The list lives on the filesystem rather than in store configuration on purpose: widening it
+  should take a deploy, not admin or database access.
+* `{{block id="..."}}` is untouched. It names no class for Magento to resolve; core renders a
+  CMS block by id.
 
 ## Upgrading
 * [Semver Policy](https://semver.org/)
