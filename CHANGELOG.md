@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.1.0](https://github.com/graycoreio/magento2-style-smuggler-patch/compare/v2.0.0...v2.1.0) (2026-09-07)
+
+
+### Features
+
+* add block allowlist ([fa577b5](https://github.com/graycoreio/magento2-style-smuggler-patch/commit/fa577b5159e14e2012202360cf6b3d26844884e6))
+
 ## [2.0.0](https://github.com/graycoreio/magento2-style-smuggler-patch/compare/v1.0.0...v2.0.0) (2026-09-05)
 
 
